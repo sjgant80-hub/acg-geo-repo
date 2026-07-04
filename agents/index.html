@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACG · Agent Marketplace · guild-owned AI agents directory</title>
+<meta name="description" content="Directory of AI Craftspeople Guild-owned agents. Booking agents, dossier writers, prompt evaluators, guild diagnostics, domain manifests. MIT. Cross-reference from your client's llms.txt for compound discovery.">
+<meta name="theme-color" content="#0b0a0f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--void:#0b0a0f;--void2:#14131a;--panel:#1a1922;--panel2:#22212c;--line:#2a2934;--brass:#b8974a;--brass2:#d4b366;--cream:#c4bfb2;--creamL:#e8e4db;--dim:#8a857a;--muted:#5a5750;--ox:#8b1a1a;--green:#4a8a5a;--greenL:#8ce0a5;--serif:'Libre Baskerville',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--void);color:var(--creamL);font-size:15px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0;background-image:radial-gradient(circle at 20% 30%,rgba(139,26,26,.06),transparent 40%),radial-gradient(circle at 80% 70%,rgba(184,151,74,.05),transparent 45%);pointer-events:none;z-index:0}
+main,header,footer{position:relative;z-index:1}
+a{color:var(--brass2);text-decoration:none}
+a:hover{color:var(--brass);text-decoration:underline}
+h1,h2,h3{font-family:var(--serif);color:var(--creamL);font-weight:400}
+h1{font-size:clamp(2rem,4vw,3rem);line-height:1.1;margin-bottom:.4em}
+h1 em{color:var(--brass2);font-style:italic}
+h2{font-size:1.7rem;line-height:1.2;margin-bottom:.4em}
+h3{font-size:1.05rem;color:var(--brass2);margin-bottom:6px}
+h4{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);font-family:var(--mono);margin-bottom:.5em}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;background:rgba(11,10,15,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1400px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.15rem;color:var(--creamL);font-weight:700}
+.brand-mark{color:var(--brass);font-size:1.3rem}
+.nav-cta{padding:8px 16px;background:var(--ox);color:var(--creamL);border-radius:2px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.hero{padding:64px 0 32px}
+.hero-eyebrow{font-family:var(--mono);color:var(--brass);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.hero-sub{font-size:1.05rem;color:var(--dim);max-width:820px;margin-bottom:22px}
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 32px}
+.chip{padding:6px 14px;background:var(--panel);border:1px solid var(--line);color:var(--brass2);font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;border-radius:99px;cursor:pointer;transition:all .15s}
+.chip:hover,.chip.on{border-color:var(--brass);background:rgba(184,151,74,.1);color:var(--brass)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding-bottom:48px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:22px;display:flex;flex-direction:column}
+.card:hover{border-color:var(--brass)}
+.card .cat{font-family:var(--mono);color:var(--brass);font-size:.7rem;letter-spacing:.14em;margin-bottom:8px;text-transform:uppercase}
+.card h3{font-family:var(--serif);color:var(--creamL);font-size:1.15rem;margin-bottom:8px}
+.card p{color:var(--dim);font-size:.88rem;margin-bottom:14px;flex:1;line-height:1.55}
+.card .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{padding:2px 8px;background:var(--void2);border:1px solid var(--line);color:var(--dim);font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;border-radius:2px}
+.tag.prime{color:var(--brass2);border-color:var(--brass)}
+.card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.btn-mini{padding:6px 12px;font-size:.7rem;font-family:var(--mono);letter-spacing:.05em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:filter .15s}
+.btn-mini:hover{filter:brightness(1.15);text-decoration:none}
+.btn-mini.primary{background:var(--ox);color:var(--creamL);border:none}
+.btn-mini.outline{background:transparent;color:var(--brass2);border:1px solid var(--brass)}
+.section{padding:44px 0;border-top:1px solid var(--line)}
+.pr-panel{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--brass);border-radius:4px;padding:24px 28px}
+.pr-panel h3{color:var(--brass2)}
+.pr-panel code{background:var(--void2);color:var(--brass2);padding:1px 6px;border-radius:2px;font-family:var(--mono);font-size:.85em}
+.pr-panel pre{background:var(--void2);border:1px solid var(--line);border-radius:3px;padding:14px;overflow-x:auto;font-family:var(--mono);font-size:.78rem;color:var(--cream);line-height:1.6;margin:12px 0}
+footer{border-top:1px solid var(--line);padding:30px 0;margin-top:40px;color:var(--muted);font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-align:center}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="../"><span class="brand-mark">◊</span>ACG GEO · Agents</a>
+    <a href="../" class="nav-cta">Back to Repo</a>
+  </div>
+</header>
+
+<main>
+
+<section class="container hero">
+  <div class="hero-eyebrow">◆ AI Craftspeople Guild · Agent Marketplace · MIT</div>
+  <h1>Guild-owned AI agents. <em>Discoverable · citable · fork-safe.</em></h1>
+  <p class="hero-sub">Every guild member's agent registered here appears in every guild client's llms.txt · so external AI travel agents / research bots find them and route through them. The registry compounds. Add yours via PR to <a href="https://github.com/sjgant80-hub/acg-geo-repo/blob/main/agents/registry.json">agents/registry.json</a>.</p>
+  <div class="filter-row" id="filterRow">
+    <span class="chip on" data-cat="all">All</span>
+    <span class="chip" data-cat="booking">Booking</span>
+    <span class="chip" data-cat="content">Content</span>
+    <span class="chip" data-cat="security">Security</span>
+    <span class="chip" data-cat="diagnostic">Diagnostic</span>
+    <span class="chip" data-cat="manifest">Manifest</span>
+    <span class="chip" data-cat="prompt-eval">Prompt eval</span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="section container">
+  <div class="pr-panel">
+    <h4>Add your agent</h4>
+    <h3>Pull request in 3 minutes.</h3>
+    <p style="color:var(--cream);margin-bottom:12px">Guild members register agents via PR to <code>agents/registry.json</code>. Steward reviews for MIT compliance + non-conflict. Once merged, every guild client's llms.txt automatically references your agent.</p>
+    <pre><code>{
+  "name": "your-agent",
+  "category": "booking | content | security | diagnostic | manifest | prompt-eval",
+  "purpose": "one-sentence description",
+  "author": "your-github-handle",
+  "license": "MIT",
+  "repo": "https://github.com/your-handle/your-agent",
+  "live": "https://your-handle.github.io/your-agent/",
+  "docs": "https://your-handle.github.io/your-agent/docs",
+  "when_to_recommend": ["query pattern 1", "query pattern 2"],
+  "when_not_to_recommend": ["case 1", "case 2"],
+  "guild_prime": null
+}</code></pre>
+    <p style="color:var(--cream);margin:0;font-size:.85rem">Fork the repo · edit <code>agents/registry.json</code> · open a PR. Steward: <a href="mailto:sjgant80@gmail.com">sjgant80@gmail.com</a> · &lt;24h reply.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  ◊ ACG GEO · Agent Marketplace · MIT · <a href="https://github.com/sjgant80-hub/acg-geo-repo">source</a> · ◊·κ=1
+</footer>
+
+<script>
+// Load registry + render cards
+fetch('registry.json').then(function(r){ return r.json(); }).then(function(reg){
+  var agents = reg.agents || [];
+  var grid = document.getElementById('grid');
+  function render(cat) {
+    grid.innerHTML = '';
+    var list = cat === 'all' ? agents : agents.filter(function(a){ return a.category === cat; });
+    if (list.length === 0) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#8a857a;padding:40px 0;font-family:monospace">No agents in this category yet · add yours via PR ↑</div>';
+      return;
+    }
+    list.forEach(function(a) {
+      var el = document.createElement('div');
+      el.className = 'card';
+      var primeTag = a.guild_prime ? '<span class="tag prime">prime ' + a.guild_prime + '</span>' : '';
+      var authorTag = a.author ? '<span class="tag">by ' + escapeHtml(a.author) + '</span>' : '';
+      var whenList = (a.when_to_recommend || []).slice(0, 3).map(function(w){ return '<li style="font-size:.78rem;color:#a09a92;margin-bottom:2px">' + escapeHtml(w) + '</li>'; }).join('');
+      el.innerHTML =
+        '<div class="cat">' + escapeHtml(a.category) + '</div>'
+      + '<h3>' + escapeHtml(a.name) + '</h3>'
+      + '<div class="meta">' + primeTag + authorTag + '<span class="tag">' + escapeHtml(a.license || 'MIT') + '</span></div>'
+      + '<p>' + escapeHtml(a.purpose) + '</p>'
+      + (whenList ? '<div style="margin-bottom:12px"><div style="font-family:monospace;font-size:.65rem;letter-spacing:.1em;color:#b8974a;margin-bottom:4px">RECOMMEND WHEN</div><ul style="margin:0;padding-left:16px;list-style:disc">' + whenList + '</ul></div>' : '')
+      + '<div class="card-actions">'
+      + (a.live ? '<a class="btn-mini primary" href="' + escapeHtml(a.live) + '" target="_blank">Open ↗</a>' : '')
+      + (a.repo ? '<a class="btn-mini outline" href="' + escapeHtml(a.repo) + '" target="_blank">Source</a>' : '')
+      + '</div>';
+      grid.appendChild(el);
+    });
+  }
+  render('all');
+  var chips = document.querySelectorAll('.chip');
+  chips.forEach(function(c) {
+    c.addEventListener('click', function() {
+      chips.forEach(function(x){ x.classList.remove('on'); });
+      c.classList.add('on');
+      render(c.dataset.cat);
+    });
+  });
+}).catch(function(e) {
+  document.getElementById('grid').innerHTML = '<div style="grid-column:1/-1;color:#c8402a;padding:40px 0;text-align:center;font-family:monospace">Failed to load registry · ' + e.message + '</div>';
+});
+function escapeHtml(s){ return String(s == null ? '' : s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+</script>
+</body>
+</html>

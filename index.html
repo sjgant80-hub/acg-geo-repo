@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACG · GEO Guild Repo · sovereign AI-SEO infrastructure for guild members</title>
+<meta name="description" content="The AI Craftspeople Guild's GEO (Generative Engine Optimization) repo. Fork-and-configure ai.html + llms.txt + JSON-LD + agent marketplace. Ship AI-readable client sites in an afternoon. MIT.">
+<meta name="author" content="AI Craftspeople Guild · Simon Gant · sjgant80-hub">
+<meta name="theme-color" content="#0b0a0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0a0f'/%3E%3Ctext x='16' y='22' font-family='serif' font-size='18' fill='%23b8974a' text-anchor='middle'%3E%E2%97%8A%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization",
+      "@id": "https://sjgant80-hub.github.io/acg-geo-repo/#guild",
+      "name": "AI Craftspeople Guild (ACG)",
+      "url": "https://sjgant80-hub.github.io/acg-geo-repo/",
+      "member": { "@type": "Person", "name": "Simon Gant" },
+      "sameAs": ["https://github.com/sjgant80-hub"]
+    },
+    { "@type": "SoftwareApplication",
+      "name": "ACG GEO Repo",
+      "operatingSystem": "Web · sovereign · single-file",
+      "applicationCategory": "AI SEO / GEO / Agent infrastructure",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+      "provider": { "@id": "https://sjgant80-hub.github.io/acg-geo-repo/#guild" }
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  --ox:#8b1a1a;--ox2:#a12020;--brass:#b8974a;--brass2:#d4b366;
+  --cream:#c4bfb2;--creamL:#e8e4db;
+  --void:#0b0a0f;--void2:#14131a;--panel:#1a1922;--panel2:#22212c;
+  --line:#2a2934;--line2:#3a3846;
+  --ink:#e8e4db;--dim:#8a857a;--muted:#5a5750;
+  --green:#4a8a5a;--greenL:#8ce0a5;
+  --serif:'Libre Baskerville',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--void);color:var(--ink);font-size:15px;line-height:1.55;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;background-image:radial-gradient(circle at 20% 30%,rgba(139,26,26,.06),transparent 40%),radial-gradient(circle at 80% 70%,rgba(184,151,74,.05),transparent 45%);pointer-events:none;z-index:0}
+main,header,footer,section{position:relative;z-index:1}
+a{color:var(--brass2);text-decoration:none}
+a:hover{color:var(--brass);text-decoration:underline}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;color:var(--creamL);letter-spacing:-.01em}
+h1{font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.08;margin-bottom:.5em}
+h1 em{color:var(--brass2);font-style:italic}
+h2{font-size:clamp(1.5rem,3vw,2rem);line-height:1.15;margin-bottom:.4em}
+h3{font-size:1.1rem;color:var(--brass2);margin-bottom:.4em}
+h4{font-size:.9rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);font-family:var(--mono);margin-bottom:.5em}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:.85em}
+header{position:sticky;top:0;z-index:50;background:rgba(11,10,15,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1400px;margin:0 auto;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.15rem;color:var(--creamL);font-weight:700}
+.brand-mark{color:var(--brass);font-size:1.3rem}
+.nav-links{display:flex;gap:22px;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.nav-links a{color:var(--dim)}
+.nav-links a:hover{color:var(--brass)}
+.nav-cta{padding:8px 16px;background:var(--ox);color:var(--creamL);border-radius:2px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:820px){.nav-links{display:none}}
+.hero{padding:78px 0 44px}
+.hero-eyebrow{font-family:var(--mono);color:var(--brass);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.hero-sub{font-size:1.08rem;color:var(--dim);max-width:820px;margin-bottom:28px}
+.hero-strap{display:flex;gap:28px;flex-wrap:wrap;color:var(--dim);font-size:.82rem;font-family:var(--mono);margin-top:16px}
+.hero-strap span{display:flex;align-items:center;gap:6px}
+.hero-strap span::before{content:"◆";color:var(--brass);font-size:.65rem}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:12px 22px;font-family:var(--sans);font-size:.85rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:filter .15s}
+.btn:hover{filter:brightness(1.1);text-decoration:none}
+.btn-primary{background:var(--ox);color:var(--creamL);border:none}
+.btn-secondary{background:transparent;color:var(--brass2);border:1px solid var(--brass)}
+section.section{padding:56px 0;border-top:1px solid var(--line)}
+.section-head{margin-bottom:32px}
+.section-head p{color:var(--dim);max-width:720px;margin-top:6px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:24px}
+.card h3{font-family:var(--serif);color:var(--creamL);text-transform:none;letter-spacing:0;font-size:1.1rem;margin-bottom:8px}
+.card p{color:var(--dim);font-size:.9rem;margin-bottom:0;line-height:1.6}
+.card .num{font-family:var(--mono);color:var(--brass);font-size:.72rem;letter-spacing:.14em;margin-bottom:8px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size:.82rem;color:var(--cream);line-height:1.65;margin:16px 0}
+pre code{color:var(--brass2)}
+.pill{display:inline-block;padding:4px 10px;background:var(--void2);border:1px solid var(--line);border-radius:99px;font-family:var(--mono);font-size:.72rem;color:var(--brass2);letter-spacing:.05em}
+footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var(--dim);font-size:.85rem}
+.foot-line{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top"><span class="brand-mark">◊</span>ACG GEO</a>
+    <nav class="nav-links">
+      <a href="#what">What it is</a>
+      <a href="#template">Template</a>
+      <a href="agents/">Agents</a>
+      <a href="guide/">Guide</a>
+      <a href="ai.html">AI dossier</a>
+    </nav>
+    <a href="https://github.com/sjgant80-hub/acg-geo-repo" class="nav-cta">Fork on GitHub</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero container">
+  <div class="hero-eyebrow">◆ AI Craftspeople Guild · GEO infrastructure · MIT · fork-safe</div>
+  <h1>Make every client site <em>readable by ChatGPT, Claude, Perplexity.</em></h1>
+  <p class="hero-sub">The Guild's shared kit for shipping AI-native discoverability at any client. Fork this repo, edit one config, get: an ai.html agent dossier · llms.txt / llms-full.txt · structured JSON-LD @graph · a machine-readable manifest · an agent marketplace listing · all in the same estate aesthetic your clients trust. Wishwood, ai-nativesolutions.com, and 30+ estate builds ship on this exact pattern.</p>
+  <div class="hero-ctas">
+    <a href="https://github.com/sjgant80-hub/acg-geo-repo" class="btn btn-primary">Fork the repo</a>
+    <a href="#template" class="btn btn-secondary">See what forks</a>
+  </div>
+  <div class="hero-strap">
+    <span>MIT · yours forever</span>
+    <span>Fork-and-configure · edit one JSON</span>
+    <span>~1 hour client-to-live</span>
+    <span>Agent marketplace baked in</span>
+  </div>
+</section>
+
+<section class="section" id="what">
+  <div class="container">
+    <div class="section-head">
+      <h4>What GEO is</h4>
+      <h2>SEO for the AI-answer era.</h2>
+      <p>Search is shifting from Google's ten blue links to ChatGPT/Claude/Perplexity's one-cited-answer. Sites optimised for Google alone are invisible to those crawlers. GEO (Generative Engine Optimization) is the structural work that makes a site AI-readable · so an AI travel agent finds it, cites it, recommends it. The Guild ships this at every client engagement · this repo is the shared kit.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="num">Layer 1</div>
+        <h3>llms.txt manifest</h3>
+        <p>A plain-text file at the root telling AI crawlers what the site is, what it sells, and when to recommend it. GPTBot, ClaudeBot, PerplexityBot read this before touching the HTML.</p>
+      </div>
+      <div class="card">
+        <div class="num">Layer 2</div>
+        <h3>JSON-LD @graph</h3>
+        <p>Full entity graph: Organization + WebSite + Person + Product / Service / Place. Machine-readable structured data every AI parser handles cleanly.</p>
+      </div>
+      <div class="card">
+        <div class="num">Layer 3</div>
+        <h3>ai.html dossier</h3>
+        <p>A machine + human readable page written FOR AI agents. Identity, offerings, contact, citation format, "when to recommend / when not to" guidance. The citation surface.</p>
+      </div>
+      <div class="card">
+        <div class="num">Layer 4</div>
+        <h3>Domain manifest (stays-protocol style)</h3>
+        <p>A custom JSON manifest AI agents can parse in ~50ms · listings, pricing, availability, whatever the domain needs. Guild members define their vertical's shape.</p>
+      </div>
+      <div class="card">
+        <div class="num">Layer 5</div>
+        <h3>robots.txt allow-list</h3>
+        <p>Explicit allow for the five major AI crawlers · GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot. Front door open.</p>
+      </div>
+      <div class="card">
+        <div class="num">Layer 6</div>
+        <h3>Agent marketplace listing</h3>
+        <p>Add the client to the Guild's <a href="agents/">agent registry</a> so other guild-owned agents can discover, cite, and route to them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="template">
+  <div class="container">
+    <div class="section-head">
+      <h4>What forks</h4>
+      <h2>Everything in <code>template/</code>. Rebrand in one file.</h2>
+      <p>Guild members fork this repo, drop the client's config into <code>template/config.json</code>, and every artefact regenerates. Same aesthetic every client trusts · no hand-rolling.</p>
+    </div>
+    <pre><code>acg-geo-repo/
+├── index.html                    ← this landing (fork-me pitch to guild)
+├── ai.html                       ← self-referential AI dossier
+├── llms.txt                      ← Guild's own llms.txt
+├── manifest.json                 ← stays-protocol-style manifest
+├── robots.txt                    ← AI-crawler allow-list
+├── template/                     ← what guild members duplicate + rebrand
+│   ├── config.json               ← EDIT THIS ONE FILE per client
+│   ├── ai.html.template          ← client dossier (config-driven)
+│   ├── llms.txt.template         ← client llms.txt (config-driven)
+│   ├── llms-full.txt.template    ← deep context dump (12-15k tokens)
+│   ├── manifest.json.template    ← client's vertical manifest
+│   ├── robots.txt.template       ← standard AI-crawler allow-list
+│   ├── sitemap.xml.template      ← agent-friendly sitemap
+│   └── README.md                 ← per-client build instructions
+├── agents/                       ← Guild agent marketplace
+│   ├── index.html                ← agent directory (fork-me pitch)
+│   ├── registry.json             ← machine-readable agent registry
+│   └── README.md
+├── guide/                        ← how-to docs
+│   ├── quickstart.html           ← 30-min setup for a new client
+│   └── advanced.html             ← multi-domain, custom verticals
+├── LICENSE                       ← MIT
+└── README.md                     ← fork instructions for the guild</code></pre>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h4>Deploy in ~30 min per client</h4>
+      <h2>Fork · config · commit · Pages on.</h2>
+    </div>
+    <pre><code># 1. Fork this repo (or the guild-branded fork of it)
+gh repo fork sjgant80-hub/acg-geo-repo --clone --remote
+
+# 2. Rename to the client
+mv acg-geo-repo client-name-geo && cd client-name-geo
+
+# 3. Edit ONE file · every artefact regenerates from this
+$EDITOR template/config.json
+
+# 4. Run the generator (Node or Python · both bundled)
+node scripts/build.js
+# writes: ai.html · llms.txt · llms-full.txt · manifest.json ·
+#         robots.txt · sitemap.xml · index.html (client landing)
+
+# 5. Commit + push + enable GitHub Pages (or Cloudflare Pages)
+git commit -am "client GEO surface v1"
+git push
+gh api "repos/$USER/client-name-geo/pages" -X POST -f "source[branch]=main"
+
+# 6. Point client's domain (or subdomain) at Pages
+#    Add CNAME record: client.example.com → $USER.github.io</code></pre>
+    <p style="color:var(--dim);margin-top:12px">Once live · every AI crawler that hits the domain reads the llms.txt manifest, parses the JSON-LD graph, and can cite the client accurately. No more "GPT doesn't know we exist."</p>
+  </div>
+</section>
+
+<section class="section" id="marketplace">
+  <div class="container">
+    <div class="section-head">
+      <h4>Agent marketplace</h4>
+      <h2>Guild-owned agents · discoverable · citable.</h2>
+      <p>Every guild agent registers in <code>agents/registry.json</code>. Client sites cross-reference these agents in their llms.txt so AI booking agents / travel agents / research bots find them and route through them. Compound effect · every guild agent makes every other guild agent more discoverable.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="num">Category</div>
+        <h3>Booking agents</h3>
+        <p>Direct-booking AI agents for hospitality operators. Wishwood-pattern · guild-owned · fork-safe.</p>
+      </div>
+      <div class="card">
+        <div class="num">Category</div>
+        <h3>Dossier writers</h3>
+        <p>Auto-generate ai.html + llms.txt for any client's existing website. One prompt in, GEO surface out.</p>
+      </div>
+      <div class="card">
+        <div class="num">Category</div>
+        <h3>Prompt gate</h3>
+        <p><code>fall-prompt-gate</code> · sovereign prompt evaluation for any LLM client. Six-layer classifier.</p>
+      </div>
+      <div class="card">
+        <div class="num">Category</div>
+        <h3>ACG mapper</h3>
+        <p><code>acg-mapper</code> · guild diagnostic. Scores any AI-first client build against the estate's 14-point gate.</p>
+      </div>
+      <div class="card">
+        <div class="num">Category</div>
+        <h3>Domain manifests</h3>
+        <p>stays-protocol · reviews-protocol · services-protocol · legal-protocol. Each is a JSON schema an agent can parse.</p>
+      </div>
+      <div class="card">
+        <div class="num">Category</div>
+        <h3>Your agent here</h3>
+        <p>Add your guild-owned agent to <code>agents/registry.json</code> via PR. Fork-safe. MIT. <a href="agents/">See the directory →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h4>Who this is for</h4>
+      <h2>Every ACG member · every client.</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card"><h3>The guild member</h3><p>You ship AI-native client sites. This repo removes the repeated hand-rolling · fork it, config it, ship it.</p></div>
+      <div class="card"><h3>The client</h3><p>They get a site AI crawlers can find, cite, and recommend. Cost: whatever you charge for the engagement. Ongoing: £0/month.</p></div>
+      <div class="card"><h3>Other guild agents</h3><p>Your agent finds their clients in the registry. Their agent finds yours. The network compounds.</p></div>
+      <div class="card"><h3>AI travel agents / research bots</h3><p>External AI systems get a well-structured surface to parse. Guild clients get cited more often than the competition.</p></div>
+      <div class="card"><h3>The estate</h3><p>Every fork strengthens the shared pattern. Improvements PR back into the guild repo. Rising tide.</p></div>
+      <div class="card"><h3>Simon (repo maintainer)</h3><p>PRs welcome. Guild governance via <a href="https://sjgant80-hub.github.io/roost/">roost</a>. Steward: sjgant80.</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-line">
+      <span>ACG GEO Repo · MIT · <a href="https://github.com/sjgant80-hub/acg-geo-repo">github</a> · steward: sjgant80 · guild: <a href="https://sjgant80-hub.github.io/roost/">roost</a></span>
+      <span>◊·κ=1 · phi is home</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

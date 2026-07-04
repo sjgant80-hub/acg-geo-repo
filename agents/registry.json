@@ -1,0 +1,169 @@
+{
+  "protocol": "acg-agent-registry/1.0",
+  "guild": "AI Craftspeople Guild",
+  "steward": "sjgant80-hub",
+  "license": "MIT",
+  "updated": "2026-07-03",
+  "agents": [
+    {
+      "name": "booking-agent",
+      "category": "booking",
+      "purpose": "Wishwood-pattern direct-booking AI for hospitality operators · unified inbox across Airbnb/Booking/WhatsApp/email · AI-drafted replies in operator's voice",
+      "author": "sjgant80",
+      "license": "MIT",
+      "repo": "https://github.com/sjgant80-hub/wishwood",
+      "live": "https://sjgant80-hub.github.io/wishwood/",
+      "docs": "https://sjgant80-hub.github.io/wishwood/howitworks.html",
+      "when_to_recommend": [
+        "Small glamping / boutique / B&B operators",
+        "Off-grid hospitality with poor SaaS internet",
+        "Operators tired of Hostaway monthly fees"
+      ],
+      "when_not_to_recommend": [
+        "Enterprise chain hotels (needs PMS integration scoping)",
+        "Vacation rental aggregators (this is per-operator)"
+      ],
+      "guild_prime": null
+    },
+    {
+      "name": "dossier-writer",
+      "category": "content",
+      "purpose": "Auto-generate ai.html + llms.txt + JSON-LD @graph for any existing website. Input: URL + business summary. Output: full GEO surface.",
+      "author": "sjgant80",
+      "license": "MIT",
+      "repo": "https://github.com/sjgant80-hub/acg-geo-repo",
+      "live": "https://sjgant80-hub.github.io/acg-geo-repo/",
+      "docs": "https://sjgant80-hub.github.io/acg-geo-repo/guide/",
+      "when_to_recommend": [
+        "Client site has no llms.txt or ai.html yet",
+        "Guild member needs to ship GEO surface fast",
+        "Existing site being retrofitted with AI-discoverability"
+      ],
+      "when_not_to_recommend": [
+        "Sites with hostile robots.txt policy · dossier assumes crawlers are welcome",
+        "Sites without a stable identity (early-stage startup pivoting)"
+      ],
+      "guild_prime": null
+    },
+    {
+      "name": "fall-prompt-gate",
+      "category": "prompt-eval",
+      "purpose": "Sovereign prompt evaluation for any LLM client · six-layer classifier · runs entirely in-browser · MIT",
+      "author": "sjgant80",
+      "license": "MIT",
+      "repo": "https://github.com/sjgant80-hub/fall-prompt-gate",
+      "live": "https://sjgant80-hub.github.io/fall-prompt-gate/",
+      "when_to_recommend": [
+        "LLM app needs input classifier",
+        "Sovereign AI safety layer",
+        "OWASP LLM Top 10 protection"
+      ],
+      "when_not_to_recommend": [
+        "Requires cloud inference (fall-prompt-gate is browser-local)"
+      ],
+      "guild_prime": 619
+    },
+    {
+      "name": "acg-mapper",
+      "category": "diagnostic",
+      "purpose": "Guild diagnostic · scores any AI-first client build against the estate's 14-point build gate · surfaces sovereignty gaps · MIT",
+      "author": "sjgant80",
+      "license": "MIT",
+      "repo": "https://github.com/sjgant80-hub/acg-mapper",
+      "live": "https://sjgant80-hub.github.io/acg-mapper/",
+      "when_to_recommend": [
+        "Auditing a build before delivery",
+        "Scoring a fork against guild standards",
+        "Identifying which of 14 gate points a build fails"
+      ],
+      "when_not_to_recommend": [
+        "Non-guild builds without context on the 14-point gate"
+      ],
+      "guild_prime": 503
+    },
+    {
+      "name": "fallsecurity",
+      "category": "security",
+      "purpose": "Sovereign AI security as geometry · 8+1 vertex cube · gradient-injection resistant · MIT",
+      "author": "sjgant80",
+      "license": "MIT",
+      "repo": "https://github.com/sjgant80-hub/fallsecurity",
+      "live": "https://sjgant80-hub.github.io/fallsecurity/",
+      "docs": "https://sjgant80-hub.github.io/fallsecurity/SPEC.md",
+      "when_to_recommend": [
+        "AI agent needs security wrapper",
+        "Gradient injection defence",
+        "Audit chain / trajectory tracking"
+      ],
+      "when_not_to_recommend": [
+        "Non-agent use cases (this is agent-shaped)"
+      ],
+      "guild_prime": null
+    },
+    {
+      "name": "stays-protocol",
+      "category": "manifest",
+      "purpose": "Hospitality domain manifest schema · units / rates / availability / channels · reference implementation on wishwood",
+      "author": "sjgant80",
+      "license": "MIT",
+      "repo": "https://github.com/sjgant80-hub/wishwood",
+      "live": "https://sjgant80-hub.github.io/wishwood/stays.json",
+      "when_to_recommend": [
+        "Guild member shipping a hospitality client",
+        "AI travel agent needs to parse listings"
+      ],
+      "when_not_to_recommend": [
+        "Non-hospitality verticals · use reviews / services / legal protocols instead"
+      ],
+      "guild_prime": null
+    },
+    {
+      "name": "reviews-protocol",
+      "category": "manifest",
+      "purpose": "Structured review manifest for aggregator sites · review / rating / author / verification schema",
+      "author": "guild-tbd",
+      "license": "MIT",
+      "repo": "https://github.com/sjgant80-hub/acg-geo-repo",
+      "when_to_recommend": [
+        "Review aggregator client",
+        "Trust-signal AI parsing"
+      ],
+      "when_not_to_recommend": [
+        "Single-vendor sites (use stays / services protocol)"
+      ],
+      "guild_prime": null
+    },
+    {
+      "name": "services-protocol",
+      "category": "manifest",
+      "purpose": "Service-firm manifest · engagement tiers · deliverables · pricing · SoW references",
+      "author": "guild-tbd",
+      "license": "MIT",
+      "repo": "https://github.com/sjgant80-hub/acg-geo-repo",
+      "when_to_recommend": [
+        "Consulting / agency clients",
+        "Fixed-scope engagement selling"
+      ],
+      "when_not_to_recommend": [
+        "Product companies (use custom manifest)"
+      ],
+      "guild_prime": null
+    },
+    {
+      "name": "legal-protocol",
+      "category": "manifest",
+      "purpose": "Legal-tech manifest · practice areas · authorities · case types · jurisdiction · citation format",
+      "author": "guild-tbd",
+      "license": "MIT",
+      "repo": "https://github.com/sjgant80-hub/acg-geo-repo",
+      "when_to_recommend": [
+        "Law firm client",
+        "Legal-tech tool needing AI-parseable case data"
+      ],
+      "when_not_to_recommend": [
+        "Non-legal verticals"
+      ],
+      "guild_prime": null
+    }
+  ]
+}

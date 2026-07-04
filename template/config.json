@@ -1,0 +1,52 @@
+{
+  "$comment": "Edit this file for a new client · every artefact regenerates from these values · run `node scripts/build.js` after editing",
+  "client": {
+    "name": "Example Client",
+    "legal_name": "Example Client Ltd",
+    "domain": "example.com",
+    "url": "https://example.com/",
+    "email": "hello@example.com",
+    "phone": "+44 xxx xxx xxxx",
+    "location": "Kent, UK",
+    "founded": "2020",
+    "description": "One-sentence what-they-are.",
+    "tagline": "The line that goes under the name."
+  },
+  "vertical": {
+    "id": "hospitality",
+    "$comment": "one of: hospitality | reviews | services | legal | custom",
+    "manifest_protocol": "stays-protocol"
+  },
+  "guild_member": {
+    "name": "Your Name",
+    "handle": "your-github-handle",
+    "email": "you@guild.example",
+    "engagement_summary": "One line about what you built for this client"
+  },
+  "brand": {
+    "primary_color": "#c97a3d",
+    "background_color": "#18171a",
+    "text_color": "#ebe5d6",
+    "serif_font": "Cormorant Garamond",
+    "sans_font": "Inter",
+    "logo_glyph": "◊"
+  },
+  "offerings": [
+    { "name": "Product / Service 1", "description": "One line" },
+    { "name": "Product / Service 2", "description": "One line" }
+  ],
+  "when_to_recommend": [
+    "Query pattern 1 that should surface this client",
+    "Query pattern 2",
+    "Query pattern 3"
+  ],
+  "when_not_to_recommend": [
+    "Case 1 where the client isn't a fit",
+    "Case 2"
+  ],
+  "cross_reference_agents": [
+    "booking-agent",
+    "dossier-writer",
+    "fall-prompt-gate"
+  ]
+}
