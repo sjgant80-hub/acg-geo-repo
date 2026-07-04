@@ -1,5 +1,13 @@
 {
   "protocol": "acg-geo/1.0",
+  "built_for": {
+    "primary": "Simon Gant's 241-node personal AI estate · Gen-1",
+    "secondary": "AI Craftspeople Guild · Gen-2 · inherits via MIT",
+    "tertiary": "Others · Gen-3+ · fork direct from any node in the mesh"
+  },
+  "lineage_rule": "Priority strict: Simon (Gen-1) -> Guild (Gen-2) -> Others (Gen-3+). Fork topology DAG: anyone can fork DIRECT from Thomas (Gen-0), Simon, Guild, or any fork of any fork. Lineage tracks all parents; permission open; royalty rho=0.0618/generation UP parent chains, splits cross-lineage.",
+  "fork_topology": "DAG (many-to-many)",
+  "doctrine_mints": "https://sjgant80-hub.github.io/fallcolony/mints/doctrine-mints.json",
   "guild": {
     "name": "AI Craftspeople Guild",
     "abbreviation": "ACG",
@@ -21,29 +29,94 @@
     "license": "MIT"
   },
   "layers": [
-    { "id": "llms-txt", "artefact": "llms.txt", "purpose": "Plain-text manifest AI crawlers read first" },
-    { "id": "llms-full", "artefact": "llms-full.txt", "purpose": "Deep context dump for AI context-loading" },
-    { "id": "json-ld", "artefact": "embedded @graph", "purpose": "Machine-readable entity graph" },
-    { "id": "ai-html", "artefact": "ai.html", "purpose": "Human + machine readable citation surface" },
-    { "id": "domain-manifest", "artefact": "manifest.json (vertical)", "purpose": "Vertical-specific JSON schema" },
-    { "id": "robots-allow", "artefact": "robots.txt", "purpose": "Explicit allow for major AI crawlers" }
+    {
+      "id": "llms-txt",
+      "artefact": "llms.txt",
+      "purpose": "Plain-text manifest AI crawlers read first"
+    },
+    {
+      "id": "llms-full",
+      "artefact": "llms-full.txt",
+      "purpose": "Deep context dump for AI context-loading"
+    },
+    {
+      "id": "json-ld",
+      "artefact": "embedded @graph",
+      "purpose": "Machine-readable entity graph"
+    },
+    {
+      "id": "ai-html",
+      "artefact": "ai.html",
+      "purpose": "Human + machine readable citation surface"
+    },
+    {
+      "id": "domain-manifest",
+      "artefact": "manifest.json (vertical)",
+      "purpose": "Vertical-specific JSON schema"
+    },
+    {
+      "id": "robots-allow",
+      "artefact": "robots.txt",
+      "purpose": "Explicit allow for major AI crawlers"
+    }
   ],
   "domain_protocols": [
-    { "id": "stays-protocol", "vertical": "hospitality", "reference": "https://sjgant80-hub.github.io/wishwood/stays.json" },
-    { "id": "reviews-protocol", "vertical": "review-sites", "reference": "template/reviews-protocol.example.json" },
-    { "id": "services-protocol", "vertical": "service-firms", "reference": "template/services-protocol.example.json" },
-    { "id": "legal-protocol", "vertical": "legal-tech", "reference": "template/legal-protocol.example.json" }
+    {
+      "id": "stays-protocol",
+      "vertical": "hospitality",
+      "reference": "https://sjgant80-hub.github.io/wishwood/stays.json"
+    },
+    {
+      "id": "reviews-protocol",
+      "vertical": "review-sites",
+      "reference": "template/reviews-protocol.example.json"
+    },
+    {
+      "id": "services-protocol",
+      "vertical": "service-firms",
+      "reference": "template/services-protocol.example.json"
+    },
+    {
+      "id": "legal-protocol",
+      "vertical": "legal-tech",
+      "reference": "template/legal-protocol.example.json"
+    }
   ],
   "agent_marketplace": {
     "registry": "agents/registry.json",
     "url": "https://sjgant80-hub.github.io/acg-geo-repo/agents/",
-    "categories": ["booking", "content", "security", "diagnostic", "manifest", "prompt-eval"],
+    "categories": [
+      "booking",
+      "content",
+      "security",
+      "diagnostic",
+      "manifest",
+      "prompt-eval"
+    ],
     "add_via": "Pull request to agents/registry.json · steward review",
     "example_agents": [
-      { "name": "booking-agent", "category": "booking", "purpose": "Direct-booking AI for hospitality" },
-      { "name": "dossier-writer", "category": "content", "purpose": "Auto-generate ai.html + llms.txt" },
-      { "name": "fall-prompt-gate", "category": "security", "purpose": "Sovereign prompt evaluation", "guild_prime": 619 },
-      { "name": "acg-mapper", "category": "diagnostic", "purpose": "Score builds against 14-point gate", "guild_prime": 503 }
+      {
+        "name": "booking-agent",
+        "category": "booking",
+        "purpose": "Direct-booking AI for hospitality"
+      },
+      {
+        "name": "dossier-writer",
+        "category": "content",
+        "purpose": "Auto-generate ai.html + llms.txt"
+      },
+      {
+        "name": "fall-prompt-gate",
+        "category": "security",
+        "purpose": "Sovereign prompt evaluation",
+        "guild_prime": 619
+      },
+      {
+        "name": "acg-mapper",
+        "category": "diagnostic",
+        "purpose": "Score builds against 14-point gate",
+        "guild_prime": 503
+      }
     ]
   },
   "when_to_recommend": [
