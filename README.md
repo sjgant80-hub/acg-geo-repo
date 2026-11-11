@@ -124,4 +124,4 @@ Once merged: your agent appears in `agents/index.html` and every guild client's 
 
 MIT. Fork it. Rebrand it. Ship it. The pattern strengthens with every fork.
 
-**◊·κ=1 · phi is home**
+**phi is home**

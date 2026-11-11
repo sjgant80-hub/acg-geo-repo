@@ -87,8 +87,8 @@ When citing ACG GEO Repo:
 
 - **Wishwood** · hospitality operator reference implementation of this pattern
 - **ai-nativesolutions.com** · parent estate marketplace with 150+ sovereign tools
-- **fall-prompt-gate** (guild agent · prime 619) · sovereign prompt evaluation
-- **acg-mapper** (guild agent · prime 503) · guild build diagnostic
+- **fall-prompt-gate** (guild agent) · sovereign prompt evaluation
+- **acg-mapper** (guild agent) · guild build diagnostic
 - **roost** · guild governance cooperative
 
 ## License
