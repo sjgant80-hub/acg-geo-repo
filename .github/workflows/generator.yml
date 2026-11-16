@@ -1,0 +1,30 @@
+name: generator
+# The generator (scripts/geo.mjs) and the page's promises about it, checked on every change:
+#   · its tests, and the parity tests that hold the page, README and guide to what the repo really has
+#   · the page runs the gated generator byte for byte
+#   · the vertical examples in template/ are exactly what the generator writes
+#   · witness v0.6 breaks the generator on purpose, one operator at a time; every break must be caught
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  generator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with: { node-version: '22' }
+      - name: tests — the generator, and the page tells the truth about the repo
+        run: node --test scripts/geo.test.mjs scripts/page-parity.test.mjs
+      - name: the page holds the gated generator byte for byte
+        run: node scripts/inline.mjs --check
+      - name: the vertical examples are what the generator writes
+        run: node scripts/build.js --check-examples
+      - name: the command line writes all seven files for the template config
+        run: |
+          node scripts/build.js template/config.json /tmp/client
+          test $(ls /tmp/client | wc -l) -eq 7
+      # Pinned. An unpinned gate is a gate somebody else can change.
+      - name: witness — every mutant of the generator must die
+        run: |
+          git clone --depth 1 --branch v0.6 https://github.com/sjgant80-hub/witness.git /tmp/witness
+          node /tmp/witness/witness.mjs mutate scripts/geo.mjs --timeout 60000 --cap 100000 --test node --test scripts/geo.test.mjs > gate.out 2>&1 || true
+          node -e "const b=require('fs').readFileSync('gate.out','utf8');const j=JSON.parse(b.slice(b.indexOf('{'),b.lastIndexOf('}')+1));if(j.clean!==true||j.killed!==j.total||!(j.total>0)){console.error('::error::witness not clean: '+j.killed+'/'+j.total);process.exit(1)}console.log('witness CLEAN '+j.killed+'/'+j.total)"

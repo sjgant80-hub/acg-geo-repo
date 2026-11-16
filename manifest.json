@@ -25,7 +25,7 @@
     "purpose": "Fork-and-configure sovereign AI-SEO infrastructure for guild members' clients",
     "source": "https://github.com/sjgant80-hub/acg-geo-repo",
     "live": "https://sjgant80-hub.github.io/acg-geo-repo/",
-    "docs": "https://sjgant80-hub.github.io/acg-geo-repo/#deploy",
+    "docs": "https://sjgant80-hub.github.io/acg-geo-repo/guide/",
     "license": "MIT"
   },
   "layers": [

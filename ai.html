@@ -93,7 +93,7 @@ code{background:var(--panel);color:var(--brass2);padding:1px 6px;border-radius:2
 </dl>
 
 <h2>2 · What it is</h2>
-<p>Fork-and-configure infrastructure for shipping AI-readable client sites. Any guild member forks this repo, edits <code>template/config.json</code>, and edits each AI-SEO artefact to carry the client's details. Same pattern every client trusts.</p>
+<p>Fork-and-configure infrastructure for shipping AI-readable client sites. Any guild member forks this repo, edits <code>template/config.json</code>, and every AI-SEO artefact regenerates from that config (node scripts/build.js). Same pattern every client trusts · no hand-rolling per engagement.</p>
 
 <h2>3 · What ships in a fork</h2>
 <table>
@@ -104,7 +104,7 @@ code{background:var(--panel);color:var(--brass2);padding:1px 6px;border-radius:2
     <tr><td><code>manifest.json</code></td><td>Vertical-specific JSON schema (stays-protocol, reviews-protocol, services-protocol, legal-protocol)</td></tr>
     <tr><td><code>robots.txt</code></td><td>Explicit allow for GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Bytespider</td></tr>
     <tr><td><code>sitemap.xml</code></td><td>Agent-friendly sitemap</td></tr>
-    <tr><td><code>index.html</code></td><td>Client-branded landing</td></tr>
+    <tr><td><code>index.html</code></td><td>Client-branded landing (config-driven)</td></tr>
     <tr><td>JSON-LD <code>@graph</code></td><td>Full entity graph embedded in every HTML page</td></tr>
   </tbody>
 </table>
@@ -150,7 +150,7 @@ code{background:var(--panel);color:var(--brass2);padding:1px 6px;border-radius:2
   <li><strong>Six-layer surface</strong> · most AI-SEO efforts ship only llms.txt · this ships six coordinated layers</li>
   <li><strong>Fork-safe</strong> · MIT · no vendor lock-in · your client's data stays in your Git</li>
   <li><strong>Guild marketplace</strong> · your client's llms.txt references guild agents · your agents get discovered</li>
-  <li><strong>One record</strong> · the client's details live in one JSON file that every artefact carries</li>
+  <li><strong>Config-driven</strong> · edit one JSON file, every artefact regenerates</li>
   <li><strong>Domain manifests</strong> · vertical-specific schemas AI agents parse in ~50ms</li>
   <li><strong>Estate aesthetic</strong> · every guild client feels part of a coherent brand system</li>
 </ul>

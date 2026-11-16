@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quick start · ACG GEO Repo</title>
+<meta name="description" content="Make a client's site readable by AI search in about 30 minutes: fork, fill in one config file, run the generator, publish.">
+<style>
+:root{--bg:#0b0a0f;--panel:#1a1922;--line:#2a2934;--ink:#e8e4db;--dim:#8a857a;--brass:#b8974a;--brass2:#d4b366}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:820px;margin:0 auto;padding:28px 20px 60px}
+a{color:var(--brass2)}
+h1,h2{font-family:Georgia,serif;font-weight:400;color:#f3efe6}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:.4em 0}
+h2{font-size:1.35rem;margin:1.8em 0 .5em}
+.crumb{font:.8rem ui-monospace,Consolas,monospace;color:var(--dim)}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 16px;overflow-x:auto;font:.82rem/1.6 ui-monospace,Consolas,monospace;color:#d8d2c4}
+code{font-family:ui-monospace,Consolas,monospace;color:var(--brass2)}
+pre code{color:inherit}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:8px 10px}
+th{color:var(--dim);font-weight:600}
+.scroll{overflow-x:auto}
+.note{color:var(--dim);font-size:.92rem}
+ol li{margin-bottom:.4em}
+</style>
+</head>
+<body>
+<main>
+<p class="crumb"><a href="../">ACG GEO Repo</a> / guide · <a href="advanced.html">advanced</a></p>
+<h1>Quick start: a new client in about 30 minutes</h1>
+<p>You will fork the kit, fill in one file with the client's details, run one command, and publish the seven files it writes. Nothing is installed: you need <b>git</b>, <b>Node 18 or later</b>, a GitHub account, and the client's own domain (or a subdomain of it).</p>
+
+<h2>1 · Fork the kit</h2>
+<pre><code>gh repo fork sjgant80-hub/acg-geo-repo --clone --remote
+mv acg-geo-repo client-name-geo && cd client-name-geo</code></pre>
+
+<h2>2 · Fill in the one file</h2>
+<p>Open <code>template/config.json</code> and replace every example value with the client's own. The fields:</p>
+<div class="scroll"><table>
+<tr><th>Field</th><th>What to put</th></tr>
+<tr><td><code>client.name</code></td><td>Required. The name the client trades under (120 characters at most).</td></tr>
+<tr><td><code>client.url</code></td><td>Required. The full address of the client's site, starting <code>https://</code>. Every link the files carry is built from it.</td></tr>
+<tr><td><code>client.description</code></td><td>Required. One sentence on what the client is. AI answers often quote it.</td></tr>
+<tr><td><code>client.legal_name</code>, <code>email</code>, <code>phone</code>, <code>location</code>, <code>founded</code>, <code>tagline</code></td><td>Optional. Left empty, they are left out of every file.</td></tr>
+<tr><td><code>vertical.id</code></td><td><code>hospitality</code>, <code>reviews</code>, <code>services</code>, <code>legal</code> or <code>custom</code>. It decides the manifest's shape (see <a href="advanced.html">advanced</a>).</td></tr>
+<tr><td><code>offerings</code></td><td>At least one, each with a <code>name</code> and a one-line <code>description</code>. No prices: those are the client's to publish.</td></tr>
+<tr><td><code>when_to_recommend</code>, <code>when_not_to_recommend</code></td><td>The questions an AI should, and should not, send to this client. Honest "not" lines make the "yes" lines more trusted.</td></tr>
+<tr><td><code>brand</code></td><td>Colours as <code>#rrggbb</code>, plain font names, one or two characters for the logo glyph.</td></tr>
+<tr><td><code>cross_reference_agents</code></td><td>Ids of guild agents from <code>agents/registry.json</code> that should be linked from the client's llms.txt.</td></tr>
+<tr><td><code>guild_member</code></td><td>You, credited in llms-full.txt.</td></tr>
+</table></div>
+<p class="note">Not sure what a field does? Try it first on the <a href="../#try">generator on the main page</a>: it runs the same code in your browser and shows all seven files as you edit.</p>
+
+<h2>3 · Run the generator</h2>
+<pre><code>node scripts/build.js template/config.json docs</code></pre>
+<p>It writes seven files into <code>docs/</code>: <code>llms.txt</code>, <code>llms-full.txt</code>, <code>ai.html</code>, <code>manifest.json</code>, <code>robots.txt</code>, <code>sitemap.xml</code> and <code>index.html</code>.</p>
+<ul>
+<li><b>Refused?</b> Nothing is written, and every reason is listed (a missing name, an address that is not <code>http(s)</code>, an unknown vertical). Fix those and run it again.</li>
+<li><b>Warnings?</b> The files are written, but read them: "still the template placeholder" names each field that still holds example text. Do not publish until it is gone.</li>
+</ul>
+
+<h2>4 · Look before you publish</h2>
+<ol>
+<li>Open <code>docs/index.html</code> and <code>docs/ai.html</code> in a browser. Check the name, the description and every offering.</li>
+<li>Read <code>docs/llms.txt</code> as an AI would: is it what you would want quoted?</li>
+<li>Paste <code>docs/index.html</code> into a schema.org validator to see the @graph it carries.</li>
+</ol>
+
+<h2>5 · Publish on the client's own domain</h2>
+<pre><code>git add docs template/config.json && git commit -m "client GEO surface v1"
+git push
+gh api "repos/$USER/client-name-geo/pages" -X POST -f "source[branch]=main" -f "source[path]=/docs"</code></pre>
+<p>Then, in the repo's Pages settings, set the custom domain, and add a DNS <code>CNAME</code> record from it to <code>$USER.github.io</code>. <b>Use the client's own domain or a subdomain of it.</b> Crawlers read <code>robots.txt</code> only at the root of a host, so a <code>github.io/client-name-geo/</code> address would hide it.</p>
+
+<h2>6 · Check it is live</h2>
+<pre><code>curl -s https://client.example/robots.txt
+curl -s https://client.example/llms.txt | head
+curl -s -o /dev/null -w "%{http_code}\n" https://client.example/ai.html</code></pre>
+
+<h2>7 · Keep it current</h2>
+<p>When the client changes what they offer, edit <code>template/config.json</code>, run step 3 again, and commit. The same config always gives the same files, so the diff shows exactly what changed.</p>
+<p class="note">Next: <a href="advanced.html">verticals and their manifests, several domains, and the checks to keep in CI</a>.</p>
+</main>
+</body>
+</html>

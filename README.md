@@ -2,7 +2,9 @@
 
 **AI Craftspeople Guild · Generative Engine Optimization infrastructure · MIT · fork-safe.**
 
-Fork this repo to ship AI-native discoverability at any client. Six coordinated artefacts, ready to edit for the client, with the client's details kept in one config file. Same coordinated GEO pattern every guild client trusts.
+Fork this repo to ship AI-native discoverability at any client. Edit one config file and run one command: the generator writes every AI-readable artefact for that client. Same coordinated GEO pattern every guild client trusts. No hand-rolling.
+
+**Try the generator in your browser first:** https://sjgant80-hub.github.io/acg-geo-repo/#try · **Quick start:** https://sjgant80-hub.github.io/acg-geo-repo/guide/
 
 **Live:** https://sjgant80-hub.github.io/acg-geo-repo/
 
@@ -18,10 +20,18 @@ Everything a client site needs to be AI-readable:
 
 ```
 template/
-└── config.json                ← the client's details, in one place
+├── config.json                ← EDIT THIS ONE FILE per client
+└── *.example.json             ← a manifest for each vertical, as the generator writes it
+scripts/
+├── geo.mjs                    ← the generator: config in, seven files out (mutation-gated, no dependencies)
+├── build.js                   ← its command line
+└── *.test.mjs                 ← its tests, and the check that the page tells the truth
+guide/
+├── index.html                 ← quick start
+└── advanced.html              ← verticals, several domains, CI checks
 ```
 
-and the six artefacts you edit for the client: `ai.html` · `llms.txt` · `manifest.json` · `robots.txt` · `sitemap.xml` · `index.html`.
+One config gives seven files: `llms.txt` · `llms-full.txt` · `ai.html` · `manifest.json` · `robots.txt` · `sitemap.xml` · `index.html` (the client landing). A config with a problem is refused, with every reason listed; template text left in is named in a warning.
 
 Plus the agent marketplace:
 
@@ -42,6 +52,16 @@ Any well-built AI-readable site ships all six · this repo ships them coordinate
 5. **`robots.txt`** · explicit allow for GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Bytespider
 6. **Agent marketplace listing** · client cross-referenced from Guild's `agents/registry.json`
 
+## Checks (run by CI on every change)
+
+```bash
+node --test scripts/geo.test.mjs scripts/page-parity.test.mjs
+node scripts/inline.mjs --check
+node scripts/build.js --check-examples
+```
+
+CI also mutation-gates `scripts/geo.mjs` with witness v0.6: every deliberate break must be caught by a test.
+
 ## Fork + deploy (~30 min per client)
 
 ```bash
@@ -49,31 +69,34 @@ Any well-built AI-readable site ships all six · this repo ships them coordinate
 git clone https://github.com/sjgant80-hub/acg-geo-repo client-name-geo
 cd client-name-geo
 
-# 2. Record the client's details in one place
+# 2. Edit template/config.json for the client
 $EDITOR template/config.json
 
-# 3. Edit each artefact to carry them
-#    ai.html · llms.txt · manifest.json · robots.txt · sitemap.xml · index.html
+# 3. Generate all artefacts (Node 18+, no install)
+node scripts/build.js template/config.json docs
+# writes docs/: ai.html · llms.txt · llms-full.txt · manifest.json ·
+#               robots.txt · sitemap.xml · index.html
 
-# 4. Commit + push + enable GitHub Pages
-git init && git commit -am "GEO surface v1"
-gh repo create client-name-geo --public --push
-gh api "repos/$USER/client-name-geo/pages" -X POST -f "source[branch]=main"
+# 4. Commit + push + serve docs/ with GitHub Pages
+git add docs template/config.json && git commit -m "GEO surface v1"
+gh repo create client-name-geo --public --source . --push
+gh api "repos/$USER/client-name-geo/pages" -X POST -f "source[branch]=main" -f "source[path]=/docs"
 
-# 5. Point client's domain (or subdomain) at Pages via CNAME
+# 5. Point the client's own domain (or a subdomain) at Pages via CNAME:
+#    crawlers read robots.txt only at the root of a host
 ```
 
 ## Vertical manifest protocols
 
-Pick one · or extend for a new vertical:
+Set `vertical.id` in the config; the generator writes that protocol's manifest. Each example is what it writes from the template config (no price fields: those are the client's to publish).
 
 | Vertical | Protocol | Reference |
 |---|---|---|
 | Hospitality | `stays-protocol` | https://sjgant80-hub.github.io/wishwood/stays.json |
-| Review aggregators | `reviews-protocol` | (template shipping soon) |
-| Service firms | `services-protocol` | (template shipping soon) |
-| Legal-tech | `legal-protocol` | (template shipping soon) |
-| Custom | (author your own) | contribute back via PR |
+| Review aggregators | `reviews-protocol` | `template/reviews-protocol.example.json` |
+| Service firms | `services-protocol` | `template/services-protocol.example.json` |
+| Legal-tech | `legal-protocol` | `template/legal-protocol.example.json` |
+| Custom | `acg-geo` | `template/acg-geo.example.json` · or author your own and PR it back |
 
 ## Adding your agent to the marketplace
 

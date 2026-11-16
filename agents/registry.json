@@ -33,7 +33,7 @@
       "license": "MIT",
       "repo": "https://github.com/sjgant80-hub/acg-geo-repo",
       "live": "https://sjgant80-hub.github.io/acg-geo-repo/",
-      "docs": "https://sjgant80-hub.github.io/acg-geo-repo/#deploy",
+      "docs": "https://sjgant80-hub.github.io/acg-geo-repo/guide/",
       "when_to_recommend": [
         "Client site has no llms.txt or ai.html yet",
         "Guild member needs to ship GEO surface fast",

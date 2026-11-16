@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Advanced · ACG GEO Repo</title>
+<meta name="description" content="Verticals and their manifests, several domains, what the generator refuses, and the checks to keep in CI.">
+<style>
+:root{--bg:#0b0a0f;--panel:#1a1922;--line:#2a2934;--ink:#e8e4db;--dim:#8a857a;--brass:#b8974a;--brass2:#d4b366}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:820px;margin:0 auto;padding:28px 20px 60px}
+a{color:var(--brass2)}
+h1,h2{font-family:Georgia,serif;font-weight:400;color:#f3efe6}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:.4em 0}
+h2{font-size:1.35rem;margin:1.8em 0 .5em}
+.crumb{font:.8rem ui-monospace,Consolas,monospace;color:var(--dim)}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 16px;overflow-x:auto;font:.82rem/1.6 ui-monospace,Consolas,monospace;color:#d8d2c4}
+code{font-family:ui-monospace,Consolas,monospace;color:var(--brass2)}
+pre code{color:inherit}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:8px 10px}
+th{color:var(--dim);font-weight:600}
+.scroll{overflow-x:auto}
+.note{color:var(--dim);font-size:.92rem}
+</style>
+</head>
+<body>
+<main>
+<p class="crumb"><a href="../">ACG GEO Repo</a> / <a href="./">guide</a> / advanced</p>
+<h1>Advanced</h1>
+
+<h2>Verticals and their manifests</h2>
+<p><code>vertical.id</code> picks the manifest's protocol and the names of its two main keys. If you also give <code>vertical.manifest_protocol</code>, it must match, or the config is refused. A worked example of each, written by the generator from the template config, is in the repo.</p>
+<div class="scroll"><table>
+<tr><th>vertical.id</th><th>Protocol</th><th>Keys</th><th>schema.org type</th><th>Example</th></tr>
+<tr><td><code>hospitality</code></td><td>stays-protocol/1.0</td><td><code>host</code>, <code>stays</code></td><td>LodgingBusiness</td><td><code>template/stays-protocol.example.json</code></td></tr>
+<tr><td><code>reviews</code></td><td>reviews-protocol/1.0</td><td><code>site</code>, <code>subjects</code></td><td>Organization</td><td><code>template/reviews-protocol.example.json</code></td></tr>
+<tr><td><code>services</code></td><td>services-protocol/1.0</td><td><code>firm</code>, <code>services</code></td><td>ProfessionalService</td><td><code>template/services-protocol.example.json</code></td></tr>
+<tr><td><code>legal</code></td><td>legal-protocol/1.0</td><td><code>practice</code>, <code>practice_areas</code></td><td>LegalService</td><td><code>template/legal-protocol.example.json</code></td></tr>
+<tr><td><code>custom</code></td><td>acg-geo/1.0</td><td><code>entity</code>, <code>offerings</code></td><td>Organization</td><td><code>template/acg-geo.example.json</code></td></tr>
+</table></div>
+<p>Every manifest also carries <code>recommend</code> (when and when not), <code>agents</code>, and the addresses of the other files. <b>No price fields are written.</b> If the client wants prices in their manifest, they add and maintain them: a figure they publish is theirs to keep current.</p>
+
+<h2>Several domains, or several clients</h2>
+<p>Keep one config file per domain and give each its own output folder:</p>
+<pre><code>node scripts/build.js clients/main-site.json docs
+node scripts/build.js clients/bookings-subdomain.json bookings-docs</code></pre>
+<p>Each folder is a complete site root: serve each from its own host, so each has its own <code>robots.txt</code> at the root.</p>
+
+<h2>What the generator refuses, and what it only warns about</h2>
+<div class="scroll"><table>
+<tr><th>Refused: nothing is written</th><th>Warned: the files are written</th></tr>
+<tr><td>The config is not a JSON object · no <code>client.name</code>, or one over 120 characters · <code>client.url</code> is not a full <code>http(s)</code> address, or carries a username or password · no <code>client.description</code> · an email that does not look like one · an unknown <code>vertical.id</code>, or a <code>manifest_protocol</code> that does not match it · no offering with a name · an agent id that is not lower-case letters, digits and hyphens</td>
+<td>A colour that is not <code>#rrggbb</code>, or a font name with characters a font name cannot have: the default is used instead · a <code>client.domain</code> that differs from <code>client.url</code> (the url wins) · any field still holding the template's example text</td></tr>
+</table></div>
+<p class="note">Every value is escaped where it lands: in HTML, in XML, in the JSON-LD block (where no <code>&lt;</code> survives, so no client name can close the script), and in plain text (control characters and line breaks become spaces).</p>
+
+<h2>Keep it honest in CI</h2>
+<p>A client fork can keep the kit's own checks. They run with Node and nothing else:</p>
+<pre><code>node --test scripts/geo.test.mjs scripts/page-parity.test.mjs
+node scripts/inline.mjs --check
+node scripts/build.js --check-examples</code></pre>
+<p>The kit's own CI also runs a mutation gate on <code>scripts/geo.mjs</code>: it breaks the code on purpose, one operator at a time, and fails unless a test catches every break.</p>
+
+<h2>What it does not do</h2>
+<ul>
+<li>It makes a site <b>readable</b> by AI crawlers. It cannot make an AI recommend the client: that still depends on what the client does and what others say about them.</li>
+<li>It does not replace Google SEO work. It complements it.</li>
+<li>It does not crawl the client's existing site or measure citations. It writes what the config says, and nothing it has not been told.</li>
+</ul>
+<p class="note">Back to the <a href="./">quick start</a> · the <a href="../#try">generator on the main page</a>.</p>
+</main>
+</body>
+</html>

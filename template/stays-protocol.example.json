@@ -1,0 +1,49 @@
+{
+  "protocol": "stays-protocol/1.0",
+  "host": {
+    "id": "example-client",
+    "name": "Example Client",
+    "legal_name": "Example Client Ltd",
+    "domain": "https://example.com/",
+    "location": "Kent, UK",
+    "email": "hello@example.com",
+    "phone": "+44 xxx xxx xxxx",
+    "description": "One-sentence what-they-are.",
+    "founded": "2020"
+  },
+  "stays": [
+    {
+      "id": "product-service-1",
+      "name": "Product / Service 1",
+      "description": "One line"
+    },
+    {
+      "id": "product-service-2",
+      "name": "Product / Service 2",
+      "description": "One line"
+    }
+  ],
+  "recommend": {
+    "when": [
+      "Query pattern 1 that should surface this client",
+      "Query pattern 2",
+      "Query pattern 3"
+    ],
+    "when_not": [
+      "Case 1 where the client isn't a fit",
+      "Case 2"
+    ]
+  },
+  "agents": [
+    "booking-agent",
+    "dossier-writer",
+    "fall-prompt-gate"
+  ],
+  "artefacts": {
+    "llms": "https://example.com/llms.txt",
+    "llms_full": "https://example.com/llms-full.txt",
+    "ai": "https://example.com/ai.html",
+    "sitemap": "https://example.com/sitemap.xml"
+  },
+  "generator": "acg-geo-repo · scripts/geo.mjs"
+}
