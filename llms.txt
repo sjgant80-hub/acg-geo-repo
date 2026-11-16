@@ -15,11 +15,10 @@ ACG GEO Repo is infrastructure for the AI-answer era of search. When ChatGPT / C
 
 ## What forks
 
-Every guild member forks this repo, edits `template/config.json` for their client, and every artefact regenerates:
+Every guild member forks this repo, records the client's details in `template/config.json`, and edits each artefact to carry them:
 
 - `ai.html` · machine + human readable AI agent dossier
 - `llms.txt` · plain-text manifest AI crawlers read first
-- `llms-full.txt` · deep context dump (12-15k tokens) for AI context-loading
 - `manifest.json` · stays-protocol-style domain manifest AI agents parse in ~50ms
 - `robots.txt` · explicit allow for GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot
 - `sitemap.xml` · agent-friendly sitemap

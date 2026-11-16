@@ -2,7 +2,7 @@
 
 **AI Craftspeople Guild · Generative Engine Optimization infrastructure · MIT · fork-safe.**
 
-Fork this repo to ship AI-native discoverability at any client. Edit one config file, every artefact regenerates. Same coordinated GEO pattern every guild client trusts. No hand-rolling.
+Fork this repo to ship AI-native discoverability at any client. Six coordinated artefacts, ready to edit for the client, with the client's details kept in one config file. Same coordinated GEO pattern every guild client trusts.
 
 **Live:** https://sjgant80-hub.github.io/acg-geo-repo/
 
@@ -18,23 +18,17 @@ Everything a client site needs to be AI-readable:
 
 ```
 template/
-├── config.json                ← EDIT THIS ONE FILE per client
-├── ai.html.template           ← client agent dossier (config-driven)
-├── llms.txt.template          ← client llms.txt (config-driven)
-├── llms-full.txt.template     ← deep context dump for AI context-loading
-├── manifest.json.template     ← client's vertical manifest
-├── robots.txt.template        ← AI crawler allow-list
-├── sitemap.xml.template       ← agent-friendly sitemap
-└── README.md                  ← per-client build instructions
+└── config.json                ← the client's details, in one place
 ```
+
+and the six artefacts you edit for the client: `ai.html` · `llms.txt` · `manifest.json` · `robots.txt` · `sitemap.xml` · `index.html`.
 
 Plus the agent marketplace:
 
 ```
 agents/
 ├── index.html                 ← guild agent directory (renders registry.json)
-├── registry.json              ← machine-readable · PR to add your agent
-└── README.md
+└── registry.json              ← machine-readable · PR to add your agent
 ```
 
 ## The six-layer GEO surface
@@ -55,13 +49,11 @@ Any well-built AI-readable site ships all six · this repo ships them coordinate
 git clone https://github.com/sjgant80-hub/acg-geo-repo client-name-geo
 cd client-name-geo
 
-# 2. Edit template/config.json for the client
+# 2. Record the client's details in one place
 $EDITOR template/config.json
 
-# 3. Generate all artefacts (Node)
-node scripts/build.js
-# writes: ai.html · llms.txt · llms-full.txt · manifest.json ·
-#         robots.txt · sitemap.xml · index.html
+# 3. Edit each artefact to carry them
+#    ai.html · llms.txt · manifest.json · robots.txt · sitemap.xml · index.html
 
 # 4. Commit + push + enable GitHub Pages
 git init && git commit -am "GEO surface v1"
@@ -123,5 +115,3 @@ Once merged: your agent appears in `agents/index.html` and every guild client's 
 ## License
 
 MIT. Fork it. Rebrand it. Ship it. The pattern strengthens with every fork.
-
-**phi is home**

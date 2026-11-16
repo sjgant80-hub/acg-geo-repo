@@ -103,7 +103,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var
       <a href="#what">What it is</a>
       <a href="#template">Template</a>
       <a href="agents/">Agents</a>
-      <a href="guide/">Guide</a>
+      <a href="#deploy">Guide</a>
       <a href="ai.html">AI dossier</a>
     </nav>
     <a href="https://github.com/sjgant80-hub/acg-geo-repo" class="nav-cta">Fork on GitHub</a>
@@ -115,7 +115,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var
 <section class="hero container">
   <div class="hero-eyebrow">◆ AI Craftspeople Guild · GEO infrastructure · MIT · fork-safe</div>
   <h1>Make every client site <em>readable by ChatGPT, Claude, Perplexity.</em></h1>
-  <p class="hero-sub">The Guild's shared kit for shipping AI-native discoverability at any client. Fork this repo, edit one config, get: an ai.html agent dossier · llms.txt / llms-full.txt · structured JSON-LD @graph · a machine-readable manifest · an agent marketplace listing · all in the same estate aesthetic your clients trust. Wishwood, ai-nativesolutions.com, and 30+ estate builds ship on this exact pattern.</p>
+  <p class="hero-sub">The Guild's shared kit for shipping AI-native discoverability at any client. Fork this repo and edit it for the client to get: an ai.html agent dossier · llms.txt · structured JSON-LD @graph · a machine-readable manifest · an agent marketplace listing · all in the same estate aesthetic your clients trust. Wishwood, ai-nativesolutions.com, and 30+ estate builds ship on this exact pattern.</p>
   <div class="hero-ctas">
     <a href="https://github.com/sjgant80-hub/acg-geo-repo" class="btn btn-primary">Fork the repo</a>
     <a href="#template" class="btn btn-secondary">See what forks</a>
@@ -174,8 +174,8 @@ footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var
   <div class="container">
     <div class="section-head">
       <h4>What forks</h4>
-      <h2>Everything in <code>template/</code>. Rebrand in one file.</h2>
-      <p>Guild members fork this repo, drop the client's config into <code>template/config.json</code>, and every artefact regenerates. Same aesthetic every client trusts · no hand-rolling.</p>
+      <h2>Six artefacts, ready to rebrand for a client.</h2>
+      <p>Guild members fork this repo, drop the client's config into <code>template/config.json</code>, and edit each artefact below to carry it. Same aesthetic every client trusts · no hand-rolling.</p>
     </div>
     <pre><code>acg-geo-repo/
 ├── index.html                    ← this landing (fork-me pitch to guild)
@@ -183,28 +183,18 @@ footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var
 ├── llms.txt                      ← Guild's own llms.txt
 ├── manifest.json                 ← stays-protocol-style manifest
 ├── robots.txt                    ← AI-crawler allow-list
-├── template/                     ← what guild members duplicate + rebrand
-│   ├── config.json               ← EDIT THIS ONE FILE per client
-│   ├── ai.html.template          ← client dossier (config-driven)
-│   ├── llms.txt.template         ← client llms.txt (config-driven)
-│   ├── llms-full.txt.template    ← deep context dump (12-15k tokens)
-│   ├── manifest.json.template    ← client's vertical manifest
-│   ├── robots.txt.template       ← standard AI-crawler allow-list
-│   ├── sitemap.xml.template      ← agent-friendly sitemap
-│   └── README.md                 ← per-client build instructions
+├── sitemap.xml                   ← agent-friendly sitemap
+├── template/
+│   └── config.json               ← the client's details, in one place
 ├── agents/                       ← Guild agent marketplace
 │   ├── index.html                ← agent directory (fork-me pitch)
-│   ├── registry.json             ← machine-readable agent registry
-│   └── README.md
-├── guide/                        ← how-to docs
-│   ├── quickstart.html           ← 30-min setup for a new client
-│   └── advanced.html             ← multi-domain, custom verticals
+│   └── registry.json             ← machine-readable agent registry
 ├── LICENSE                       ← MIT
 └── README.md                     ← fork instructions for the guild</code></pre>
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="deploy">
   <div class="container">
     <div class="section-head">
       <h4>Deploy in ~30 min per client</h4>
@@ -216,13 +206,11 @@ gh repo fork sjgant80-hub/acg-geo-repo --clone --remote
 # 2. Rename to the client
 mv acg-geo-repo client-name-geo && cd client-name-geo
 
-# 3. Edit ONE file · every artefact regenerates from this
+# 3. Record the client's details in one place
 $EDITOR template/config.json
 
-# 4. Run the generator (Node or Python · both bundled)
-node scripts/build.js
-# writes: ai.html · llms.txt · llms-full.txt · manifest.json ·
-#         robots.txt · sitemap.xml · index.html (client landing)
+# 4. Edit each artefact to carry them
+#    ai.html · llms.txt · manifest.json · robots.txt · sitemap.xml · index.html
 
 # 5. Commit + push + enable GitHub Pages (or Cloudflare Pages)
 git commit -am "client GEO surface v1"

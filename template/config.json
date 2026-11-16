@@ -1,5 +1,5 @@
 {
-  "$comment": "Edit this file for a new client · every artefact regenerates from these values · run `node scripts/build.js` after editing",
+  "$comment": "The client's details in one place · edit this file for a new client, then edit each artefact (ai.html, llms.txt, manifest.json, robots.txt, sitemap.xml, index.html) to carry these values",
   "client": {
     "name": "Example Client",
     "legal_name": "Example Client Ltd",

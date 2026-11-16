@@ -25,7 +25,7 @@
     "purpose": "Fork-and-configure sovereign AI-SEO infrastructure for guild members' clients",
     "source": "https://github.com/sjgant80-hub/acg-geo-repo",
     "live": "https://sjgant80-hub.github.io/acg-geo-repo/",
-    "docs": "https://sjgant80-hub.github.io/acg-geo-repo/guide/",
+    "docs": "https://sjgant80-hub.github.io/acg-geo-repo/#deploy",
     "license": "MIT"
   },
   "layers": [
@@ -33,11 +33,6 @@
       "id": "llms-txt",
       "artefact": "llms.txt",
       "purpose": "Plain-text manifest AI crawlers read first"
-    },
-    {
-      "id": "llms-full",
-      "artefact": "llms-full.txt",
-      "purpose": "Deep context dump for AI context-loading"
     },
     {
       "id": "json-ld",
