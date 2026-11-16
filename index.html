@@ -127,7 +127,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var
 
 <section class="hero container">
   <div class="hero-eyebrow">◆ AI Craftspeople Guild · GEO infrastructure · MIT · fork-safe</div>
-  <h1>Make every client site <em>readable by ChatGPT, Claude, Perplexity.</em></h1>
+  <h1>Give AI assistants <em>an accurate account of every client.</em></h1>
   <p class="hero-sub">The Guild's shared kit for shipping AI-native discoverability at any client. Fork this repo, put the client's details in one config file, and run one command to get all seven files: an ai.html agent dossier · llms.txt and llms-full.txt · a JSON-LD @graph on every page · a vertical manifest · robots.txt and sitemap.xml · a client landing page. <a href="#try">Try the generator on this page</a> before you fork.</p>
   <div class="hero-ctas">
     <a href="#try" class="btn btn-primary">Try the generator</a>
@@ -136,7 +136,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var
   <div class="hero-strap">
     <span>MIT · yours forever</span>
     <span>Fork-and-configure · edit one JSON</span>
-    <span>~1 hour client-to-live</span>
+    <span>~30 minutes once you have the client's details</span>
     <span>Agent marketplace baked in</span>
   </div>
 </section>
@@ -146,18 +146,18 @@ footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var
     <div class="section-head">
       <h4>What GEO is</h4>
       <h2>SEO for the AI-answer era.</h2>
-      <p>Search is shifting from Google's ten blue links to ChatGPT/Claude/Perplexity's one-cited-answer. Sites optimised for Google alone are invisible to those crawlers. GEO (Generative Engine Optimization) is the structural work that makes a site AI-readable · so an AI travel agent finds it, cites it, recommends it. The Guild ships this at every client engagement · this repo is the shared kit.</p>
+      <p>Search is shifting from Google's ten blue links to ChatGPT/Claude/Perplexity's one-cited-answer. A site built only for Google's results page gives those answers little to work from. GEO (Generative Engine Optimization) is the structural work that gives AI crawlers a clear, accurate account of a business to cite. Whether an assistant recommends the business still depends on the business, and on what others say about it. The Guild ships this at every client engagement · this repo is the shared kit.</p>
     </div>
     <div class="grid-3">
       <div class="card">
         <div class="num">Layer 1</div>
         <h3>llms.txt manifest</h3>
-        <p>A plain-text file at the root telling AI crawlers what the site is, what it sells, and when to recommend it. GPTBot, ClaudeBot, PerplexityBot read this before touching the HTML.</p>
+        <p>A plain-text file at the root telling AI crawlers what the site is, what it sells, and when to recommend it. llms.txt is a proposed convention (llmstxt.org): some AI tools read it, none is obliged to, and it costs nothing to ship.</p>
       </div>
       <div class="card">
         <div class="num">Layer 2</div>
         <h3>JSON-LD @graph</h3>
-        <p>Full entity graph: Organization + WebSite + Person + Product / Service / Place. Machine-readable structured data every AI parser handles cleanly.</p>
+        <p>A schema.org graph in every HTML page: the business (as the vertical's type, such as LodgingBusiness or LegalService) with its contact details, the website, and each offering as a Service. Standard structured data any parser can read.</p>
       </div>
       <div class="card">
         <div class="num">Layer 3</div>
@@ -167,7 +167,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var
       <div class="card">
         <div class="num">Layer 4</div>
         <h3>Domain manifest (stays-protocol style)</h3>
-        <p>A custom JSON manifest AI agents can parse in ~50ms · listings, pricing, availability, whatever the domain needs. Guild members define their vertical's shape.</p>
+        <p>A small JSON manifest in the vertical's shape (stays, reviews, services, legal or custom): who the business is, what it offers, and when to recommend it. No prices are written: those are the client's to publish.</p>
       </div>
       <div class="card">
         <div class="num">Layer 5</div>
@@ -286,7 +286,7 @@ gh api "repos/$USER/client-name-geo/pages" -X POST -f "source[branch]=main" -f "
 
 # 6. Point client's domain (or subdomain) at Pages
 #    Add CNAME record: client.example.com → $USER.github.io</code></pre>
-    <p style="color:var(--dim);margin-top:12px">Once live · every AI crawler that hits the domain reads the llms.txt manifest, parses the JSON-LD graph, and can cite the client accurately. No more "GPT doesn't know we exist."</p>
+    <p style="color:var(--dim);margin-top:12px">Once live · an AI crawler that reads llms.txt or the JSON-LD graph finds an accurate description of the client to cite. It cannot make an assistant recommend the client: that still depends on the client.</p>
   </div>
 </section>
 
@@ -342,7 +342,7 @@ gh api "repos/$USER/client-name-geo/pages" -X POST -f "source[branch]=main" -f "
       <div class="card"><h3>The guild member</h3><p>You ship AI-native client sites. This repo removes the repeated hand-rolling · fork it, config it, ship it.</p></div>
       <div class="card"><h3>The client</h3><p>They get a site AI crawlers can find, cite, and recommend. Cost: whatever you charge for the engagement. Ongoing: no subscription.</p></div>
       <div class="card"><h3>Other guild agents</h3><p>Your agent finds their clients in the registry. Their agent finds yours. The network compounds.</p></div>
-      <div class="card"><h3>AI travel agents / research bots</h3><p>External AI systems get a well-structured surface to parse. Guild clients get cited more often than the competition.</p></div>
+      <div class="card"><h3>AI travel agents / research bots</h3><p>External AI systems get a well-structured surface to parse, with honest "when to recommend" and "when not to" lines.</p></div>
       <div class="card"><h3>The estate</h3><p>Every fork strengthens the shared pattern. Improvements PR back into the guild repo. Rising tide.</p></div>
       <div class="card"><h3>Simon (repo maintainer)</h3><p>PRs welcome. Guild governance via <a href="https://sjgant80-hub.github.io/roost/">roost</a>. Steward: sjgant80.</p></div>
     </div>

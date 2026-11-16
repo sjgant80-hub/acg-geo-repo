@@ -48,7 +48,7 @@ Any well-built AI-readable site ships all six · this repo ships them coordinate
 1. **`llms.txt`** · plain-text manifest AI crawlers read first
 2. **JSON-LD `@graph`** · full entity graph embedded in every HTML page
 3. **`ai.html`** · machine + human readable citation surface
-4. **Domain manifest** · vertical-specific JSON schema AI agents parse in ~50ms
+4. **Domain manifest** · vertical-specific JSON manifest (who, what, when to recommend; no prices)
 5. **`robots.txt`** · explicit allow for GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Bytespider
 6. **Agent marketplace listing** · client cross-referenced from Guild's `agents/registry.json`
 

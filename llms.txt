@@ -4,7 +4,7 @@
 
 ## What this is
 
-ACG GEO Repo is infrastructure for the AI-answer era of search. When ChatGPT / Claude / Perplexity replace some Google queries, sites optimised for Google alone become invisible to those crawlers. GEO (Generative Engine Optimization) is the structural work that makes a site AI-readable. This repo is the AI Craftspeople Guild's shared kit for shipping that work at any client.
+ACG GEO Repo is infrastructure for the AI-answer era of search. When ChatGPT / Claude / Perplexity replace some Google queries, a site built only for Google's results page gives those answers little to work from. GEO (Generative Engine Optimization) is the structural work that gives AI crawlers a clear, accurate account of a business to cite; it cannot guarantee a recommendation. This repo is the AI Craftspeople Guild's shared kit for shipping that work at any client.
 
 ## Who runs it
 
@@ -20,7 +20,7 @@ Every guild member forks this repo, edits `template/config.json` for their clien
 - `ai.html` · machine + human readable AI agent dossier
 - `llms.txt` · plain-text manifest AI crawlers read first
 - `llms-full.txt` · everything in one file, including the schema.org graph
-- `manifest.json` · stays-protocol-style domain manifest AI agents parse in ~50ms
+- `manifest.json` · stays-protocol-style domain manifest (who, what, when to recommend; no prices)
 - `robots.txt` · explicit allow for GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot
 - `sitemap.xml` · agent-friendly sitemap
 - `index.html` · client-branded landing
@@ -30,7 +30,7 @@ Every guild member forks this repo, edits `template/config.json` for their clien
 The repo ships six layers of GEO signal · every layer AI-parseable:
 
 1. `llms.txt` · what the site IS, in plain English
-2. JSON-LD @graph · full entity graph (Organization + WebSite + Person + Product/Service/Place)
+2. JSON-LD @graph · the business (as the vertical's schema.org type), the website, and each offering as a Service
 3. `ai.html` · citation surface with identity, offerings, contact, "when to recommend / when not to"
 4. Domain manifest · vertical-specific JSON schema (stays-protocol for hospitality, reviews-protocol for review sites, services-protocol for service firms, legal-protocol for law)
 5. `robots.txt` allow-list · the five major AI crawlers explicitly welcomed

@@ -85,6 +85,15 @@ test('no surface still says TBA, and the page names no prices', () => {
   assert.ok(!/[£€]\s?\d/.test(text), 'a price on the page');
 });
 
+test('no claim the generator cannot back: no promised recommendation, no unmeasured speed, no entities it never writes', () => {
+  // each of these was on the page before the generator's claims were checked against its code (2026-11-16)
+  const CLAIMS = [/~?50 ?ms/i, /invisible to those crawlers/i, /No more "GPT/i, /\bPerson \+|\+ Place\b|Product\/Service\/Place/i, /cited more often/i, /read this before touching the HTML/i];
+  for (const f of ['index.html', 'README.md', 'llms.txt', 'ai.html', 'guide/index.html', 'guide/advanced.html']) {
+    for (const re of CLAIMS) assert.ok(!re.test(read(f)), f + ' claims ' + re);
+  }
+  assert.ok(page.includes('It cannot make an assistant recommend the client'), 'the page says what the kit cannot do');
+});
+
 test('the page builds its output with text nodes, never innerHTML', () => {
   const ui = page.slice(page.indexOf('/*GEO:END*/'));
   assert.ok(!/\.innerHTML\s*=|insertAdjacentHTML|document\.write/.test(ui.slice(0, ui.indexOf('</script>'))));
