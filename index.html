@@ -115,6 +115,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var
       <a href="#what">What it is</a>
       <a href="#template">Template</a>
       <a href="#try">Try it</a>
+      <a href="#business">For business</a>
       <a href="agents/">Agents</a>
       <a href="guide/">Guide</a>
       <a href="ai.html">AI dossier</a>
@@ -255,6 +256,32 @@ footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;color:var
       <div class="card"><div class="num">Step 3 · publish</div><h3>Push, and the crawlers can read it</h3><p>Commit the folder and serve it with GitHub Pages or any static host. robots.txt names the AI crawlers and points to the sitemap. llms.txt tells them what the client is, what it offers, and when to recommend it, and when not to.</p></div>
     </div>
     <p style="color:var(--dim);margin-top:18px">How it is kept honest: the generator's tests are themselves tested by a mutation gate (every deliberate break must be caught), on GitHub's machines, on every change. The page runs the gated code byte for byte, and a test fails the build if this page lists a file the repo does not have. Prices are left out of every manifest: those are the client's to publish.</p>
+  </div>
+</section>
+
+<section class="section" id="business">
+  <div class="container">
+    <div class="section-head">
+      <h4>For your business</h4>
+      <h2>What it does for each person who signs off.</h2>
+      <p><b>In one breath:</b> one file with a client's details becomes the seven files AI crawlers and agents read, checked, escaped and the same every time. A guild member stops hand-writing them for each client. The client gets an accurate account of their business for AI answers to cite.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card"><div class="num">The owner</div><h3>An accurate account, kept current</h3><p>What AI assistants say about the business comes from what they can read. This gives them the business's own words: who it is, what it offers, and when to recommend it, and when not to. When the offer changes, one edit and one command updates every file.</p></div>
+      <div class="card"><div class="num">Finance</div><h3>No licence fee, no subscription</h3><p>MIT licence: no per-site or per-month charge, and nothing to renew. The cost is the hours to fill in one file. For the config on this page, the generator writes <b id="yield">seven files</b>, which is the work you no longer do by hand. We print no saving in money: it depends on your rates, and we have not measured them.</p></div>
+      <div class="card"><div class="num">The guild member</div><h3>The same shape at every client</h3><p>One pattern, one command, one quick start. A bad config is refused with every reason listed, before anything reaches the client's site. Template text left in is named in a warning, so a "Product / Service 1" never ships.</p></div>
+      <div class="card"><div class="num">Technical lead</div><h3>Small, readable, tested</h3><p>One dependency-free file (<code>scripts/geo.mjs</code>) plus a command line. Its tests are themselves tested: a mutation gate breaks the code on purpose, and every break must be caught. It runs on Node 18 or later and on any static host.</p></div>
+      <div class="card"><div class="num">Marketing</div><h3>Structured data without a plugin</h3><p>A schema.org graph on every page, a vertical manifest, llms.txt and a crawler-friendly robots.txt and sitemap, all from one record. It complements Google SEO work and does not replace it.</p></div>
+      <div class="card"><div class="num">The board</div><h3>The case in four lines</h3><p>Low cost: hours, not a subscription. Low risk: it writes only what the config says, and the code is yours. Clear limit: it makes the business readable, and cannot make an assistant recommend it. Reversible: delete the files and the site is as it was.</p></div>
+    </div>
+    <div class="grid-3" style="margin-top:16px">
+      <div class="card"><div class="num">Against what you pay now</div><h3>Versus a subscription tool, or hand work</h3><p>AI-SEO tools sold as a monthly subscription keep charging for as long as you use them, and keep your setup on their service. Hand-writing the files takes the same hours at every client and drifts out of date. This is a file you own, regenerated in a second whenever the client changes.</p></div>
+      <div class="card"><div class="num">Security and data protection</div><h3>Nothing leaves your machine</h3><p>The generator makes no network calls and no AI-model calls: it fills the files from the config. The "Try it" box above runs in your browser, and nothing is uploaded. The config holds the business's public contact details, which the files then publish, so leave out anything the client does not want public. Every value is escaped for HTML, XML and the JSON-LD block, and a test tries to inject a script and fails.</p></div>
+      <div class="card"><div class="num">Ownership, support and exit</div><h3>Yours to keep</h3><p>MIT, © Simon Gant: fork it, change it, keep it. The supplier is <a href="https://www.ai-nativesolutions.com/">AI Native Solutions</a>. Support and liability are agreed in each deployment's agreement. The files keep working with no service of ours behind them, and there is nothing to cancel.</p></div>
+    </div>
+    <div class="card" style="margin-top:16px"><div class="num">Risks, answered straight</div>
+      <p><b>It cannot make an assistant recommend the client.</b> It gives AI crawlers an accurate account to cite; a recommendation still depends on the business and on what others say about it. <b>llms.txt is a proposal</b> (llmstxt.org), not a standard every crawler follows. The schema.org graph and robots.txt are long-established. <b>AI crawlers change.</b> robots.txt names today's main ones; check it each year. <b>Stale details mislead.</b> Re-run the generator when the client's offer changes. <b>It is not Google SEO.</b> Keep doing that work too.</p>
+    </div>
   </div>
 </section>
 
@@ -645,6 +672,10 @@ const GEO = { VERTICALS, AI_CRAWLERS, FILES, str, escHtml, slug, baseUrl, valida
       return;
     }
     files = r.files;
+    // the brochure's one figure is measured here, from what the generator just wrote, never typed
+    const lines = GEO.FILES.reduce((n, name) => n + files[name].split('\n').length, 0);
+    const yieldEl = $('yield');
+    if (yieldEl) yieldEl.textContent = GEO.FILES.length + ' files, ' + lines.toLocaleString('en-GB') + ' lines';
     tabs.replaceChildren(...GEO.FILES.map((name) => {
       const b = Object.assign(document.createElement('button'), { type: 'button', textContent: name });
       b.dataset.name = name; b.setAttribute('role', 'tab'); b.addEventListener('click', () => show(name));

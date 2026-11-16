@@ -94,6 +94,17 @@ test('no claim the generator cannot back: no promised recommendation, no unmeasu
   assert.ok(page.includes('It cannot make an assistant recommend the client'), 'the page says what the kit cannot do');
 });
 
+test('the brochure answers each buyer, names the supplier, prints no price, and measures its one figure', () => {
+  const biz = page.slice(page.indexOf('<section class="section" id="business">'), page.indexOf('<section class="section" id="deploy">'));
+  for (const h of ['The owner', 'Finance', 'The guild member', 'Technical lead', 'Marketing', 'The board', 'Against what you pay now', 'Security and data protection', 'Ownership, support and exit', 'Risks, answered straight']) {
+    assert.ok(biz.includes(h), 'brochure: ' + h);
+  }
+  assert.ok(biz.includes('href="https://www.ai-nativesolutions.com/">AI Native Solutions</a>'), 'supplier named');
+  assert.ok(biz.includes('MIT, © Simon Gant'), 'licence holder');
+  assert.ok(!/[£€$]\s?\d/.test(biz.replace(/<[^>]+>/g, ' ')), 'no price or money figure in the brochure');
+  assert.ok(page.includes("$('yield')") && page.includes("files[name].split('\\n').length"), 'the brochure figure is computed from the generated files');
+});
+
 test('the page builds its output with text nodes, never innerHTML', () => {
   const ui = page.slice(page.indexOf('/*GEO:END*/'));
   assert.ok(!/\.innerHTML\s*=|insertAdjacentHTML|document\.write/.test(ui.slice(0, ui.indexOf('</script>'))));
